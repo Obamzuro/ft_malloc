@@ -6,8 +6,11 @@ SRC = main.c
 
 OBJ = $(SRC:.c=.o)
 
+HDR = include/ft_malloc.h
+
 HDIR = ft_printf/include	\
-       libft/include
+       libft/include		\
+	   include
 
 LIBS = ft_printf/libftprintf.a	\
        libft/libft.a
@@ -17,7 +20,7 @@ all: lib $(NAME)
 $(NAME): $(OBJ) $(LIBS)
 	gcc $(FLAGS) $(addprefix -I, $(HDIR)) $(OBJ) -L libft -lft -L ft_printf -lftprintf -o $(NAME)
 
-%.o: %.c
+%.o: %.c $(HDR)
 	gcc $(FLAGS) $(addprefix -I, $(HDIR)) -c $< -o $@
 
 lib:
